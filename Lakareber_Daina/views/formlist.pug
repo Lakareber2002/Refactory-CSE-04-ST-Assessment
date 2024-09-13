@@ -1,0 +1,47 @@
+doctype html
+html(lang="en")
+  head
+    title Form  List
+    link(rel="stylesheet" href="/css/table.css")     
+  body
+    h1 Information Entry Form
+    table
+      thead
+        tr
+          th Full Name
+          th Gender
+          th Date of Birth
+          th Date 
+          th Nationality
+          th P.O. Box Number
+          th Emergency Number
+          th Passport Number 
+          th Visa Document
+          th Departure City
+          
+      tbody
+        if form.length 
+          each formItem in form  
+            tr
+              td #{formItem.producename}
+              td #{formItem.producetype}
+              td #{formItem.produceprice}
+              td #{formItem.date}
+              td #{formItem.duedate}
+              td #{formItem.time}
+              td #{formItem.tonnage}
+              td #{formItem.name}
+              td #{formItem.location}
+              td #{formItem.contact}
+              td #{formItem.branch}
+              td
+              td #{new Date(formItem.date).toLocaleString()}
+              td 
+                a(href='/edit-credit/${formItem._id}' class="edit-btn") Edit
+              td
+                form(method="POST" action="/delete-form")
+                  input(type="hidden" name="id" value=formItem._id)
+                  button(class="delete-btn" type="submit") Delete
+        else 
+          tr
+            td(colspan="8") No form added yet!
